@@ -11,13 +11,21 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.io.OutputStream
+import java.lang.Exception
+import java.net.Socket
 
 class secondfragment : Fragment() {
     private lateinit var textview1: TextView
     private lateinit var textview2: TextView
     private lateinit var textview3: TextView
-
-
+    var userid: String? = null;
+    var switchworkout: String? = null;
+    private val addy = "172.16.36.159"
+    private val port = 7755
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -38,9 +46,27 @@ class secondfragment : Fragment() {
             textview1.text = list.elementAt(0)
             textview2.text = list.elementAt(1)
             textview3.text = list.elementAt(2)
-
+            userid = list.elementAt(3)
+            switchworkout = list.elementAt(4)
         }
         return view
+    }
+    private fun SendToServer(message: String = ""):Boolean{ //HELPERMETHOD TO SEND
+        try{
+
+            CoroutineScope(Dispatchers.IO).launch {
+                val connection = Socket(addy,port);
+                val writer: OutputStream = connection.getOutputStream();
+
+                writer.write(message.toByteArray());
+                writer.flush();
+            }
+            return true; //RETURNS TRUE IF SUCCESSFULL
+
+        }
+        catch(e: Exception) {
+            return false;
+        }
     }
 
 
@@ -49,6 +75,12 @@ class secondfragment : Fragment() {
 
         val button: Button? = view?.findViewById(R.id.btndone)
         button?.setOnClickListener {
+            when (switchworkout){
+                "leg" -> SendToServer("upxp;"+userid.toString()+";20")
+                "brust" -> SendToServer("upxp;"+userid.toString()+";40")
+                "ruecken" -> SendToServer("upxp;"+userid.toString()+";30")
+            }
+
             activity?.onBackPressed();
 
         }
