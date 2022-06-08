@@ -5,7 +5,8 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".workoutactivity">
+    tools:context=".workoutactivity"
+    >
 
 
     <ScrollView
@@ -18,30 +19,11 @@
             android:id="@+id/ll_main_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Workouts"
 
-                android:height="60dp"
-                android:gravity="center"
-                android:textSize="30sp"
-                android:background="@drawable/border_workouts"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="10dp"
-                />
 
-            <TextView
-                android:id="@+id/TextviewBundleid"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="0dp"
-                android:height="10dp"
-                android:gravity="center"
-                android:text=""
-                android:textSize="10sp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -49,8 +31,10 @@
                 android:gravity="center"
                 android:textSize="25sp"
                 android:background="@drawable/border_workouts"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="0dp"
                 android:layout_marginBottom="0dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
                 />
 
             <ImageView
@@ -79,6 +63,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Brust Workout"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
                 android:gravity="center"
                 android:textSize="25sp"
                 android:background="@drawable/border_workouts"
@@ -110,6 +96,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Rücken Workout"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
                 android:background="@drawable/border_workouts"
                 android:gravity="center"
                 android:textSize="25sp"
@@ -134,6 +122,16 @@
                 android:layout_marginRight="60dp"
                 android:layout_marginBottom="60dp"
                 android:text="Start" />
+            <TextView
+                android:id="@+id/TextviewBundleid"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="0dp"
+                android:height="0dp"
+                android:gravity="center"
+                android:text=""
+                android:textSize="0sp" />
 
             <FrameLayout
                 android:id="@+id/fragmentContainer"

@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/ic_workouts"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_fitness_center"
         android:title="Workouts"
         />
 
     <item
         android:id="@+id/ic_status"
-        android:icon="@drawable/ic_settings"
+        android:icon="@drawable/ic_home"
         android:title="Status"/>
     <item
         android:id="@+id/ic_profile"
-        android:icon="@drawable/ic_navigation"
+        android:icon="@drawable/ic_person"
         android:title="Profil"/>
 
 

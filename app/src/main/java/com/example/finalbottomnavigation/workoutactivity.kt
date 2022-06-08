@@ -4,12 +4,14 @@ import android.content.Intent
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class workoutactivity : AppCompatActivity() {
+
     private val navigasjonen = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.ic_workouts -> {
@@ -68,6 +70,8 @@ class workoutactivity : AppCompatActivity() {
             val mBundle = Bundle()
             mBundle.putString("mText","10 Squats;10 Kilometer laufen;20 mal Seilspringen;"+userid+";leg")
             b.arguments = mBundle
+            bottomNavigation.visibility= View.GONE;
+
             a.commit()
         }
         var btnstrt2 = findViewById<Button>(R.id.btnstart2)

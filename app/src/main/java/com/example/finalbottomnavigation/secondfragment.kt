@@ -22,6 +22,7 @@ class secondfragment : Fragment() {
     private lateinit var textview1: TextView
     private lateinit var textview2: TextView
     private lateinit var textview3: TextView
+    private lateinit var btnueberdecker: Button
     var userid: String? = null;
     var switchworkout: String? = null;
     private val addy = "172.16.36.159"
@@ -35,6 +36,7 @@ class secondfragment : Fragment() {
         textview1 = view.findViewById<View>(R.id.textView5) as TextView
         textview2 = view.findViewById<View>(R.id.textView4) as TextView
         textview3 = view.findViewById<View>(R.id.textView3) as TextView
+
 
         // Gets the data from the passed bundle
         val bundle = arguments
@@ -65,7 +67,7 @@ class secondfragment : Fragment() {
 
         }
         catch(e: Exception) {
-            return false;
+            return false
         }
     }
 
@@ -75,13 +77,14 @@ class secondfragment : Fragment() {
 
         val button: Button? = view?.findViewById(R.id.btndone)
         button?.setOnClickListener {
+
             when (switchworkout){
                 "leg" -> SendToServer("upxp;"+userid.toString()+";20")
                 "brust" -> SendToServer("upxp;"+userid.toString()+";40")
                 "ruecken" -> SendToServer("upxp;"+userid.toString()+";30")
             }
-
             activity?.onBackPressed();
+
 
         }
         val buttoncncl: Button? = view?.findViewById(R.id.btncancel)
