@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/drawable/border.xml" value="0.1" />
+        <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/drawable/border_black.xml" value="0.1" />
+        <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/drawable/border_workouts.xml" value="0.1" />
         <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/drawable/box.xml" value="0.1" />
-        <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/layout/activity_workout.xml" value="0.1" />
+        <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/layout/activity_workout.xml" value="0.18" />
         <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/layout/fragment_secondfragment.xml" value="0.25" />
       </map>
     </option>

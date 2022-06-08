@@ -1,6 +1,7 @@
 package com.example.finalbottomnavigation
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,11 +54,30 @@ class secondfragment : Fragment() {
         }
         val buttoncncl: Button? = view?.findViewById(R.id.btncancel)
         buttoncncl?.setOnClickListener {
-            Toast.makeText(activity, "Workout abgebrochen", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "Workout cancelled", Toast.LENGTH_SHORT).show()
 
             getActivity()?.onBackPressed();
 
         }
+
+        val textView: TextView? = view?.findViewById(R.id.counterview)
+        // time count down for 30 seconds,
+        // with 1 second as countDown interval
+        object : CountDownTimer(300000, 1000) {
+
+            // Callback function, fired on regular interval
+            override fun onTick(millisUntilFinished: Long) {
+                textView?.setText("Time remaining: " + millisUntilFinished / 1000)
+            }
+
+            // Callback function, fired
+            // when the time is up
+            override fun onFinish() {
+                Toast.makeText(activity, "Wokrout cancelled - you took too long ", Toast.LENGTH_SHORT).show()
+                getActivity()?.onBackPressed();
+            }
+        }.start()
+
     }
     companion object {
 
