@@ -5,9 +5,12 @@
       <map>
         <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/drawable/border.xml" value="0.1" />
         <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/drawable/border_black.xml" value="0.1" />
+        <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/drawable/border_shadow.xml" value="0.1" />
         <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/drawable/border_workouts.xml" value="0.1" />
         <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/drawable/box.xml" value="0.1" />
         <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/drawable/ic_settings.xml" value="0.1" />
+        <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/drawable/rounded_border.xml" value="0.1" />
+        <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/layout/activity_profile.xml" value="0.67" />
         <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/layout/activity_workout.xml" value="0.18" />
         <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/layout/fragment_secondfragment.xml" value="0.25" />
         <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/menu/menu.xml" value="0.28072916666666664" />

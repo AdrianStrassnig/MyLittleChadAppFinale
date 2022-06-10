@@ -68,7 +68,7 @@ class workoutactivity : AppCompatActivity() {
             btnstrt.isClickable = false;
             a.replace(R.id.container, b)
             val mBundle = Bundle()
-            mBundle.putString("mText","10 Squats;10 Kilometer laufen;20 mal Seilspringen;"+userid+";leg")
+            mBundle.putString("mText","6 Sätze Backsquats;5 Sätze Beinstrecker;60 mal Seilspringen;"+userid+";leg")
             b.arguments = mBundle
             bottomNavigation.visibility= View.GONE;
 
@@ -79,7 +79,7 @@ class workoutactivity : AppCompatActivity() {
             btnstrt2.isClickable = false;
             a.replace(R.id.container, b)
             val mBundle = Bundle()
-            mBundle.putString("mText","30 Liegestütze normal;20 Liegstütze incline;10 Flies mi Hanteln;"+userid+";brust")
+            mBundle.putString("mText","8 Sätze Bankdrücken;4 Sätze Dips;10 Flies mit Hanteln;"+userid+";brust")
             b.arguments = mBundle
             a.commit()
         }
@@ -88,7 +88,7 @@ class workoutactivity : AppCompatActivity() {
             btnstrt3.isClickable = false;
             a.replace(R.id.container, b)
             val mBundle = Bundle()
-            mBundle.putString("mText","10 mal deadlifts;10 Klimmzüge;Max. Reverse Flies;"+userid+";ruecken")
+            mBundle.putString("mText","10 Sätze deadlifts;10 Klimmzüge;Max. Reverse Flies mit Hanteln;"+userid+";ruecken")
             b.arguments = mBundle
             a.commit()
         }
