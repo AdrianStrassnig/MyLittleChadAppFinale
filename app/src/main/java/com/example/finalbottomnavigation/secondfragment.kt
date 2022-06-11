@@ -114,10 +114,5 @@ class secondfragment : Fragment() {
         }.start()
 
     }
-    companion object {
 
-        fun newInstance(): com.example.finalbottomnavigation.Fragment {
-            return com.example.finalbottomnavigation.Fragment()
-        }
-    }
 }

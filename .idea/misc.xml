@@ -10,9 +10,18 @@
         <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/drawable/box.xml" value="0.1" />
         <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/drawable/ic_settings.xml" value="0.1" />
         <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/drawable/rounded_border.xml" value="0.1" />
-        <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/layout/activity_profile.xml" value="0.67" />
+        <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/layout/activity_fragmentprofilefirstf.xml" value="0.25226449275362317" />
+        <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/layout/activity_profile.xml" value="0.5" />
         <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/layout/activity_workout.xml" value="0.18" />
+        <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/layout/fragment_blank.xml" value="0.25226449275362317" />
+        <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/layout/fragment_profile_1.xml" value="0.22" />
+        <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/layout/fragment_profile_first.xml" value="0.25226449275362317" />
+        <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/layout/fragment_profile_one.xml" value="0.25226449275362317" />
+        <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/layout/fragment_profilefragmentfirst.xml" value="0.25226449275362317" />
+        <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/layout/fragment_profilefragmentonef.xml" value="0.33" />
         <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/layout/fragment_secondfragment.xml" value="0.25" />
+        <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/layout/fragmentone.xml" value="0.25226449275362317" />
+        <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/layout/fragmentprofile1.xml" value="0.25226449275362317" />
         <entry key="..\:/Android studio/FinalBottomNavigation (2)/FinalBottomNavigation/app/src/main/res/menu/menu.xml" value="0.28072916666666664" />
       </map>
     </option>
