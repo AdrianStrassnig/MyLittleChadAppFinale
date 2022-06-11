@@ -31,7 +31,6 @@ class statusactivity : AppCompatActivity() {
                 intent.putExtras(extras)
                 startActivity(intent)
             }
-
         }
         false
 

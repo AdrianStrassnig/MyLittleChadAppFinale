@@ -85,7 +85,6 @@ class secondfragment : Fragment() {
             }
             activity?.onBackPressed();
 
-
         }
         val buttoncncl: Button? = view?.findViewById(R.id.btncancel)
         buttoncncl?.setOnClickListener {
