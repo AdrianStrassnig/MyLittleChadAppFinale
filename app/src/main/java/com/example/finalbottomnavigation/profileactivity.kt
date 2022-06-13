@@ -2,14 +2,14 @@ package com.example.finalbottomnavigation
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.w3c.dom.Text
 import java.io.OutputStream
 import java.lang.Exception
 import java.net.Socket
@@ -201,9 +201,47 @@ class profileactivity : AppCompatActivity() {
 
         //Button Daten end....
 
+        var secondkey = true;
+        var btn_reise = findViewById<Button>(R.id.btn_reise)
+        btn_reise.setOnClickListener {
+            if (secondkey == true) {
+                btn_reise.text = "zurück"
+
+                val listview = findViewById<ListView>(R.id.listviewid)
+                val ueber = findViewById<TextView>(R.id.ueberdeckerview)
+                ueber.visibility = View.VISIBLE
+                listview.visibility = View.VISIBLE
+                if (weight.toString() == "0") {
+                    var objmusk = weightprofile("Noch nicht gesetzt")
+                    val list: ArrayList<weightprofile> = ArrayList()
+                    list.add(objmusk)
+                    val arrayAdapter: ArrayAdapter<weightprofile> = ArrayAdapter(
+                        this, android.R.layout.simple_list_item_1, list
+                    )
+                    listview.adapter = arrayAdapter
+                }
+                else{
+                    val list: ArrayList<weightprofile> = ArrayList()
+                    val arrayAdapter: ArrayAdapter<weightprofile> = ArrayAdapter(this, android.R.layout.simple_list_item_1, list)
+                    val weightsplitter = ","
+                    var listweight = weight?.split(weightsplitter)
+                    if (listweight != null) {
+                        for (i in listweight) {
+                            var objmusk = weightprofile(i)
+                            list.add(objmusk)
+                        }
+                    }
+                    listview.adapter = arrayAdapter
+                }
+
+                secondkey = false
+            } else {
 
 
+                secondkey = true
+            }
 
+        }
 
     }
 }
