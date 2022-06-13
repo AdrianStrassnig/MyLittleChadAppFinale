@@ -106,15 +106,6 @@
         app:layout_constraintTop_toBottomOf="@+id/tbCurrentLevel" />
 
     <ImageButton
-        android:id="@+id/imageButton_ChangePetName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_preferences"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <ImageButton
         android:id="@+id/imageButton_LevelUpPet"
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -128,9 +119,10 @@
 
     <TextView
         android:id="@+id/tb_middebug"
-        android:layout_width="281dp"
-        android:layout_height="42dp"
+        android:layout_width="284dp"
+        android:layout_height="86dp"
         android:text="TextView"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

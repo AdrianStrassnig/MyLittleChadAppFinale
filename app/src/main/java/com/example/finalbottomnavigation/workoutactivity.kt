@@ -24,7 +24,7 @@ class workoutactivity : AppCompatActivity() {
     private var petname:String? = null
     private var xp:String? = null
     private var petlv:String? = null
-    private val addy = "172.16.36.159"
+    private val addy = "192.168.0.87"
     private val port = 7755
 
     private val navigasjonen = BottomNavigationView.OnNavigationItemSelectedListener { item ->

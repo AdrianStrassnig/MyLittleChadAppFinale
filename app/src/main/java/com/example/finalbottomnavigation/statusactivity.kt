@@ -2,7 +2,6 @@ package com.example.finalbottomnavigation
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +12,6 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import java.io.OutputStream
 import java.net.Socket
-import java.util.*
 
 
 class statusactivity : AppCompatActivity() {
@@ -41,13 +39,11 @@ class statusactivity : AppCompatActivity() {
                 intent.putExtras(extras)
                 startActivity(intent)
                 return@OnNavigationItemSelectedListener true
-
             }
-
         }
         false
-
     }
+
     private val addy = "192.168.0.87"
     private val port = 7755
     private var alldata:String? = " "
@@ -60,7 +56,6 @@ class statusactivity : AppCompatActivity() {
     private var height:Int? = 0
     private var weight:Int? = 0
     private var age:Int? = 0
-
 
 
     private fun SendToServer(message: String = ""):Boolean{ //HELPERMETHOD TO SEND
@@ -82,9 +77,8 @@ class statusactivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_status)
 
-        setContentView(R.layout.activity_status)
-        setContentView(R.layout.activity_status)
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.navigation)
         bottomNavigation.getMenu().getItem(1).setChecked(true);
         bottomNavigation.setOnNavigationItemSelectedListener(navigasjonen)
@@ -108,79 +102,72 @@ class statusactivity : AppCompatActivity() {
 
         if(petlevellein!! <4){
             findViewById<ImageView>(R.id.Imagebox_PetBild).setBackgroundResource(R.drawable.dog_lvl1); //clean B)
+            findViewById<TextView>(R.id.editTextPETNAME).text = petnamelein;
+            findViewById<ProgressBar>(R.id.progressBarPet).setProgress(petlevellein!!)
         }
 
         else if(petlevellein!! <7){
             findViewById<ImageView>(R.id.Imagebox_PetBild).setBackgroundResource(R.drawable.dog_lvl2); //clean B)
+            findViewById<TextView>(R.id.editTextPETNAME).text = petnamelein;
+            findViewById<ProgressBar>(R.id.progressBarPet).setProgress(petlevellein!!)
         }
 
         else if(petlevellein!! <10){
             findViewById<ImageView>(R.id.Imagebox_PetBild).setBackgroundResource(R.drawable.pet_lvl3); //clean B)
+            findViewById<TextView>(R.id.editTextPETNAME).text = petnamelein;
+            findViewById<ProgressBar>(R.id.progressBarPet).setProgress(petlevellein!!)
         }
 
-        else{
+        else if (petlevellein!! <13){
             findViewById<ImageView>(R.id.Imagebox_PetBild).setBackgroundResource(R.drawable.pet_lvl4); //clean B)
+            findViewById<TextView>(R.id.editTextPETNAME).text = petnamelein;
+            findViewById<ProgressBar>(R.id.progressBarPet).setProgress(petlevellein!!)
+        }
+        else{
+            findViewById<ImageView>(R.id.Imagebox_PetBild).setBackgroundResource(R.drawable.lvl6_pet); //clean B)
+            findViewById<TextView>(R.id.editTextPETNAME).text = petnamelein;
+            findViewById<ProgressBar>(R.id.progressBarPet).setProgress(petlevellein!!)
         }
 
-        findViewById<TextView>(R.id.editTextPETNAME).text = petnamelein;
-        findViewById<ProgressBar>(R.id.progressBarPet).setProgress(petlevellein!!)
+
+
+
 
         findViewById<ImageButton>(R.id.imageButton_LevelUpPet).setOnClickListener{
-            CoroutineScope(IO).launch {
-                try {
-                    if(currentXP!!>=10){
-                        SendToServer("lvl;${dauid};1")
-                        petlevellein = petlevellein!! +1
-                        alldata = "alldata;${dauid};${petnamelein};${currentXP};${petlevellein};${username};${height};${weight};${age}"
-                        currentXP = currentXP!!-10
-                        findViewById<TextView>(R.id.tbCurrentXP).text ="${currentXP}"
-                        findViewById<TextView>(R.id.tbCurrentLevel).text ="lvl${petlevellein}"
+            if(currentXP!!>=10){
+                currentXP = currentXP!!-10
+                petlevellein = petlevellein!! +1
+                alldata = "alldata;${dauid};${petnamelein};${currentXP};${petlevellein};${username};${height};${weight};${age}"
+
+                CoroutineScope(IO).launch {
+                    try {
+
+                            SendToServer("lvl;${dauid};1")
+
+                            findViewById<TextView>(R.id.tbCurrentXP).text ="${currentXP}"
+                            findViewById<TextView>(R.id.tb_middebug).text = alldata;
+
+                            findViewById<TextView>(R.id.tbCurrentLevel).text ="lvl${petlevellein}"
 
 
-                        updateimage()
+                            updateimage()
+
+
                     }
+                    catch (e:Exception){
 
+                    }
                 }
-                catch (e:Exception){
 
-                }
+                findViewById<TextView>(R.id.tb_middebug).text = alldata;
             }
+            else{
+                Toast.makeText(this@statusactivity, "Not enough XP!", Toast.LENGTH_LONG).show()
+            }
+
         }
-
-        findViewById<ImageButton>(R.id.imageButton_ChangePetName).setOnClickListener{
-            findViewById<EditText>(R.id.editTextPETNAME).isFocusable = true
-
-        }
-
-        findViewById<EditText>(R.id.editTextPETNAME).setOnFocusChangeListener(OnFocusChangeListener { v, hasFocus ->
-                if (!hasFocus) {
-                    if (findViewById<EditText>(R.id.editTextPETNAME).text.toString() == petnamelein){
-                        findViewById<EditText>(R.id.editTextPETNAME).isFocusable = false
-                    }
-
-                    else if (findViewById<EditText>(R.id.editTextPETNAME).text.toString() != petnamelein){
-                        CoroutineScope(IO).launch {
-                            try {
-                                SendToServer("setpetname;${dauid};${findViewById<EditText>(R.id.editTextPETNAME).text}");
-                                petnamelein =findViewById<EditText>(R.id.editTextPETNAME).text.toString()
-                                alldata = "alldata;${dauid};${petnamelein};${currentXP};${petlevellein};${username};${height};${weight};${age}"
-
-
-                            }
-                            catch (e:Exception){
-
-                            }
-                        }
-                    }
-                }
-        })
-
-
-
 
     }
-
-
     private fun updateimage(){
         if(petlevellein!! <4){
             findViewById<ImageView>(R.id.Imagebox_PetBild).setBackgroundResource(R.drawable.dog_lvl1); //clean B)

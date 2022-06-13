@@ -15,7 +15,7 @@ import java.lang.Exception
 import java.net.Socket
 
 class subworkoutactivity : AppCompatActivity() {
-    private val addy = "172.16.36.159"
+    private val addy = "192.168.0.87"
     private val port = 7755
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,23 +49,18 @@ class subworkoutactivity : AppCompatActivity() {
 
 
         var btn_done = findViewById<Button>(R.id.btndone)
-        var xpnew= datalist?.elementAt(4)?.toInt()
+        var xpnew:Int? = datalist?.elementAt(3)?.toInt()
         btn_done.setOnClickListener{
-            when (workoutlist?.elementAt(4)){
-                "leg" -> SendToServer("upxp;"+datalist?.elementAt(1).toString()+";3")
-                "brust" -> SendToServer("upxp;"+datalist?.elementAt(1).toString()+";5")
-                "ruecken" -> SendToServer("upxp;"+datalist?.elementAt(1).toString()+";4")
-            }
 
             if (workoutlist?.elementAt(4).toString() == "leg") {
                 SendToServer("upxp;"+datalist?.elementAt(1).toString()+";3")
-                if (xpnew != null) { xpnew += 3 }
+                xpnew = xpnew!!+3
             } else if (workoutlist?.elementAt(4).toString() == "brust") {
                 SendToServer("upxp;"+datalist?.elementAt(1).toString()+";5")
-                if (xpnew != null) { xpnew += 3 }
+                xpnew = xpnew!!+5
             } else if (workoutlist?.elementAt(4).toString() == "ruecken") {
                 SendToServer("upxp;"+datalist?.elementAt(1).toString()+";4")
-                if (xpnew != null) { xpnew += 3 }
+                xpnew = xpnew!!+4
             }
 
             val toworkact = Intent(this@subworkoutactivity , statusactivity::class.java)

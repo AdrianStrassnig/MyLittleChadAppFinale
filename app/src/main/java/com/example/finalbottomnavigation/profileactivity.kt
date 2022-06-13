@@ -4,22 +4,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
-import org.w3c.dom.Text
 import java.io.OutputStream
 import java.lang.Exception
 import java.net.Socket
 import java.util.*
 
 class profileactivity : AppCompatActivity() {
-    private val addy = "172.16.36.159"
+    private val addy = "192.168.0.87"
     private val port = 7755
     private var userid:String? = null
     private var username:String? = null
@@ -38,7 +35,7 @@ class profileactivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener false
             }
             R.id.ic_workouts -> {
-                var usernamesend = findViewById<TextView>(R.id.textviewusername)
+                var usernamesend = findViewById<TextView>(R.id.textviewusernamenochange)
                 var heightsend = findViewById<TextView>(R.id.textviewgroesse)
                 var weightsend = findViewById<TextView>(R.id.textviewgewicht)
                 var agesend = findViewById<TextView>(R.id.textviewalter)
@@ -54,7 +51,7 @@ class profileactivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.ic_status -> {
-                var usernamesend = findViewById<TextView>(R.id.textviewusername)
+                var usernamesend = findViewById<TextView>(R.id.textviewusernamenochange)
                 var heightsend = findViewById<TextView>(R.id.textviewgroesse)
                 var weightsend = findViewById<TextView>(R.id.textviewgewicht)
                 var agesend = findViewById<TextView>(R.id.textviewalter)
@@ -125,13 +122,14 @@ class profileactivity : AppCompatActivity() {
 
         //Setting all values from user
         profileid.text = userid
-        var usern = findViewById<TextView>(R.id.textviewusername)
+
+        var petnameview = findViewById<TextView>(R.id.textviewusernamenochange)
         var userview = findViewById<TextView>(R.id.textviewname)
         var gewichtview = findViewById<TextView>(R.id.textviewgewicht)
         var alterview = findViewById<TextView>(R.id.textviewalter)
         var groesseview = findViewById<TextView>(R.id.textviewgroesse)
-        usern.text = username.toString()
-        userview.text = username.toString()
+        userview.text = petname.toString()
+        petnameview.text = username.toString()
 
         alterview.text = age.toString()
         groesseview.text = height.toString()
@@ -157,6 +155,7 @@ class profileactivity : AppCompatActivity() {
                 btnandern.text = "Speichern"
                 key = false
             }
+
             else{
                 var inputone = findViewById<TextView>(R.id.editviewone)
                 var inputtwo = findViewById<TextView>(R.id.editviewtwo)
@@ -164,28 +163,39 @@ class profileactivity : AppCompatActivity() {
                 var inputfour = findViewById<TextView>(R.id.editviewfour)
                 var finalimput = findViewById<TextView>(R.id.textviewinputtext)
 
-                finalimput.text=inputfour.text.toString()+";"+inputtwo.text.toString()+";"+inputthree.text.toString()+";"+inputone.text.toString()
-                val senddata = "saveuser;"+profileid.text.toString()+";"+finalimput.text.toString()
 
-                "alldata;userid;Petname;XP;Petlvl;Username;Height;Weight;Age"
-                val finaldata = "alldata"+";"+userid.toString()+";"+petname.toString()+";"+xp.toString()+";"+petlv.toString()+";"+inputfour.text.toString()+";"+inputthree.text.toString()+";"+weight.toString()+","+inputtwo.text.toString()+";"+inputone.text.toString()
-                //Setting values to left user values:
-                usern.text = inputone.text.toString()
-                userview.text = inputone.text.toString()
-                gewichtview.text = inputthree.text.toString()
-                alterview.text = inputtwo.text.toString()
-                groesseview.text = inputfour.text.toString()
+                val stringone: String = inputone.text.toString()
+                val stringtwo: String = inputtwo.text.toString()
+                val stringthree: String = inputthree.text.toString()
+                val stringfour: String = inputfour.text.toString()
 
-                SendToServer(senddata)
+                if(stringone.trim().length == 0) { Toast.makeText(applicationContext, "Sie müssen alle Felder ausfüllen! ", Toast.LENGTH_SHORT).show() }
+                else if(stringtwo.trim().length == 0) { Toast.makeText(applicationContext, "Sie müssen alle Felder ausfüllen! ", Toast.LENGTH_SHORT).show() }
+                else if(stringthree.trim().length == 0) { Toast.makeText(applicationContext, "Sie müssen alle Felder ausfüllen! ", Toast.LENGTH_SHORT).show() }
+                else if(stringfour.trim().length == 0) { Toast.makeText(applicationContext, "Sie müssen alle Felder ausfüllen! ", Toast.LENGTH_SHORT).show() }
+                else{
+                    finalimput.text=inputfour.text.toString()+";"+inputtwo.text.toString()+";"+inputthree.text.toString()+";"+inputone.text.toString()
+                    val senddata = "saveuser;"+profileid.text.toString()+";"+finalimput.text.toString()
 
-                val intent = Intent(this@profileactivity, profileactivity::class.java)
-                val extras2 = Bundle()
-                extras2.putString("key1", finaldata.toString())
-                intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
-                intent.putExtras(extras2)
-                startActivity(intent)
+                    val finaldata = "alldata"+";"+userid.toString()+";"+inputfour.text.toString()+";"+xp.toString()+";"+petlv.toString()+";"+username.toString()+";"+inputthree.text.toString()+";"+weight.toString()+","+inputtwo.text.toString()+";"+inputone.text.toString()
+                    //Setting values to left user values:
 
-                key == true;
+                    userview.text = inputone.text.toString()
+                    gewichtview.text = inputthree.text.toString()
+                    alterview.text = inputtwo.text.toString()
+                    groesseview.text = inputfour.text.toString()
+
+                    SendToServer(senddata)
+
+                    val intent = Intent(this@profileactivity, profileactivity::class.java)
+                    val extras2 = Bundle()
+                    extras2.putString("key1", finaldata.toString())
+                    intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
+                    intent.putExtras(extras2)
+                    startActivity(intent)
+
+                    key == true;
+                }
             }
         }
 

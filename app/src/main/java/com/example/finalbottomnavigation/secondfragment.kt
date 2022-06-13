@@ -24,8 +24,10 @@ class secondfragment : Fragment() {
     private lateinit var btnueberdecker: Button
     var userid: String? = null;
     var switchworkout: String? = null;
-    private val addy = "172.16.36.159"
+    private val addy = "192.168.0.87"
     private val port = 7755
+
+
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
