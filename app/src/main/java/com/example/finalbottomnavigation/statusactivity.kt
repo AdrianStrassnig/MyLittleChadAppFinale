@@ -16,7 +16,7 @@ class statusactivity : AppCompatActivity() {
                 val intent = Intent(this@statusactivity, profileactivity::class.java)
                 val extras = Bundle()
                 val userid = findViewById<TextView>(R.id.TextviewId)
-                extras.putString("key1", userid.text.toString())
+                extras.putString("key1","alldata;1;MyLilChad;0;1;username;0;0;0")
                 intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
                 intent.putExtras(extras)
                 startActivity(intent)
@@ -26,7 +26,7 @@ class statusactivity : AppCompatActivity() {
                 val intent = Intent(this@statusactivity, workoutactivity::class.java)
                 val extras = Bundle()
                 val userid = findViewById<TextView>(R.id.TextviewId)
-                extras.putString("key1", userid.text.toString())
+                extras.putString("key1", "alldata;1;MyLilChad;0;1;username;0;0;0")
                 intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
                 intent.putExtras(extras)
                 startActivity(intent)

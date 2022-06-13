@@ -10,18 +10,17 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.OutputStream
-import java.lang.Exception
 import java.net.Socket
 
 class secondfragment : Fragment() {
     private lateinit var textview1: TextView
     private lateinit var textview2: TextView
     private lateinit var textview3: TextView
+    private lateinit var textviewsport: TextView
     private lateinit var btnueberdecker: Button
     var userid: String? = null;
     var switchworkout: String? = null;
@@ -49,7 +48,7 @@ class secondfragment : Fragment() {
             textview2.text = list.elementAt(1)
             textview3.text = list.elementAt(2)
             userid = list.elementAt(3)
-            switchworkout = list.elementAt(4)
+            switchworkout= list.elementAt(4)
         }
         return view
     }
@@ -83,7 +82,8 @@ class secondfragment : Fragment() {
                 "brust" -> SendToServer("upxp;"+userid.toString()+";40")
                 "ruecken" -> SendToServer("upxp;"+userid.toString()+";30")
             }
-            activity?.onBackPressed();
+            getActivity()?.onBackPressed();
+
 
         }
         val buttoncncl: Button? = view?.findViewById(R.id.btncancel)

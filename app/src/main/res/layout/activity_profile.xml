@@ -182,17 +182,6 @@
         app:layout_constraintVertical_bias="0.74" />
 
     <TextView
-        android:id="@+id/textviewname"
-        android:layout_width="79dp"
-        android:layout_height="22dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.337"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.29" />
-
-    <TextView
         android:id="@+id/textviewgewicht"
         android:layout_width="79dp"
         android:layout_height="22dp"
@@ -201,10 +190,10 @@
         app:layout_constraintHorizontal_bias="0.337"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.337" />
+        app:layout_constraintVertical_bias="0.345" />
 
     <TextView
-        android:id="@+id/textviewalter"
+        android:id="@+id/textviewname"
         android:layout_width="79dp"
         android:layout_height="22dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -212,7 +201,7 @@
         app:layout_constraintHorizontal_bias="0.337"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.386" />
+        app:layout_constraintVertical_bias="0.299" />
 
     <TextView
         android:id="@+id/textviewgroesse"
@@ -223,7 +212,18 @@
         app:layout_constraintHorizontal_bias="0.337"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.442" />
+        app:layout_constraintVertical_bias="0.451" />
+
+    <TextView
+        android:id="@+id/textviewalter"
+        android:layout_width="79dp"
+        android:layout_height="22dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.337"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.394" />
 
     <TextView
         android:id="@+id/textviewusername"
