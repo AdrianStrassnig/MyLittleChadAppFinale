@@ -4,30 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#4A4A4A"
     tools:context=".workoutactivity">
 
     <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="This is the status"
+        android:id="@+id/tbCurrentXP"
+        android:layout_width="253dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="4dp"
+        android:text="129308"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton_LevelUpPet"
+        app:layout_constraintStart_toEndOf="@+id/tbStaticXP"
+        app:layout_constraintTop_toBottomOf="@+id/progressBarPet" />
+
+    <TextView
+        android:id="@+id/tbWelcome"
+        android:layout_width="359dp"
+        android:layout_height="96dp"
+        android:text="Welcome"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.469" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbCurrentXP" />
+
+    <TextView
+        android:id="@+id/tbCurrentLevel"
+        android:layout_width="362dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:text="lvl6"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Imagebox_PetBild" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        app:menu="@menu/menu"
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_alignParentBottom="true"
-        />
+        app:menu="@menu/menu" />
+
 
     <TextView
         android:id="@+id/TextviewId"
@@ -39,5 +66,84 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.384" />
+
+    <ImageView
+        android:id="@+id/Imagebox_PetBild"
+        android:layout_width="362dp"
+        android:layout_height="370dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <EditText
+        android:id="@+id/editTextPETNAME"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
+        android:layout_width="373dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:focusable="true"
+        android:fontFamily="sans-serif-condensed"
+        android:inputType="textPersonName"
+        android:text="MylilPet"
+        android:textAlignment="center"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBarPet"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="360dp"
+        android:layout_height="25dp"
+        android:progressTint="#00FFCC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbCurrentLevel" />
+
+    <ImageButton
+        android:id="@+id/imageButton_ChangePetName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_preferences"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/imageButton_LevelUpPet"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="25dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBarPet"
+        app:srcCompat="@drawable/stru3p"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/tb_middebug"
+        android:layout_width="281dp"
+        android:layout_height="42dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tbStaticXP"
+        android:layout_width="42dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="16dp"
+        android:text="XP: "
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBarPet" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

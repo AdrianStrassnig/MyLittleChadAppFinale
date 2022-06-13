@@ -5,96 +5,142 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import kotlinx.coroutines.CoroutineScope
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doOnTextChanged
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
+import org.w3c.dom.Text
 import java.io.OutputStream
 import java.lang.Exception
 import java.net.Socket
 import java.util.*
+import kotlinx.coroutines.async as async
 
 class Login : AppCompatActivity() {
 
     private var active: Boolean = false;
     private var data: String = ""
+    private var userNameGlobal: String = ""
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    private val addy = "192.168.0.87"
+    private val port = 7755
+
+    override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        findViewById<ProgressBar>(R.id.LoaderSpinner).visibility = View.INVISIBLE;
+        findViewById<Button>(R.id.btnLogin).setOnClickListener {
+            try {
 
-        findViewById<TextView>(R.id.TextBox).text ="nice"
-        val addy = "172.16.37.107"
-        val port = 7755
-        findViewById<Button>(R.id.daBtn).setOnClickListener {
-            active = true;
-            val userid = "0";
-                val intent = Intent(this, statusactivity::class.java)
-            val extras = Bundle()
-            extras.putString("key1", userid)
-            intent.putExtras(extras)
-                startActivity(intent)
+                active = true;
 
-            //pw auslesen:
-            var InputPassword: String = findViewById<EditText>(R.id.PasswordBox).text.toString();
-            var InputUsername: String = findViewById<EditText>(R.id.UsernameBox).text.toString();
+                var InputPassword: String = findViewById<EditText>(R.id.PasswordBox).text.toString();
+                var InputUsername: String = findViewById<EditText>(R.id.UsernameBox).text.toString();
 
-            if (";" in InputPassword || ";" in InputUsername){ //checking if delegator is used in password/username and wether length is appropriate
-                Toast.makeText(this@Login, "illegal character: ; ", Toast.LENGTH_LONG).show()
-            }
-
-            else if (InputPassword.length > 30 || InputUsername.length > 30){
-                Toast.makeText(this@Login, "input exceeded 30 characters", Toast.LENGTH_LONG).show()
-            }
-
-            else{
-                CoroutineScope(IO).launch {
-                    findViewById<TextView>(R.id.recievedTextbox).text = client(addy,port, InputPassword, InputUsername);
+                if (";" in InputPassword || ";" in InputUsername){ //checking if delegator is used in password/username and wether length is appropriate
+                    Toast.makeText(this@Login, "illegal character: ; ", Toast.LENGTH_LONG).show()
                 }
+
+                else if (InputPassword.length > 30 || InputUsername.length > 30){
+                    Toast.makeText(this@Login, "input exceeded 30 characters", Toast.LENGTH_LONG).show()
+                }
+
+                else{
+                    findViewById<ProgressBar>(R.id.loaderSpinner).visibility = View.VISIBLE;
+                    userNameGlobal = InputUsername;
+                    var dacontext = this@Login;
+                    var usefullstuff = "unset";
+
+                    CoroutineScope(IO).launch {
+                        try {
+
+                            usefullstuff = client("login", InputPassword, InputUsername);
+                            findViewById<TextView>(R.id.tb_debug).text = usefullstuff;
+                            active = true;
+                            val intent = Intent(dacontext, statusactivity::class.java)
+                            val extras = Bundle()
+                            extras.putString("key1", usefullstuff)
+                            intent.putExtras(extras)
+                            findViewById<ProgressBar>(R.id.loaderSpinner).visibility = View.INVISIBLE;
+                            var bruh:String = findViewById<TextView>(R.id.tb_debug).text.split(';')[0]
+                            if ( bruh != "alldata" ){
+                             throw Exception("Login failed");
+                            }
+                            startActivity(intent)
+                        }
+                        catch (e:Exception){
+
+                        }
+                    }
+                }
+            }
+            catch (d:Exception){
+
             }
 
             findViewById<EditText>(R.id.PasswordBox).setText("");
             findViewById<EditText>(R.id.UsernameBox).setText("");
-
         }
 
+        findViewById<Button>(R.id.btnRegister).setOnClickListener {
+                active = true;
+
+                var InputPassword: String = findViewById<EditText>(R.id.PasswordBox).text.toString();
+                var InputUsername: String = findViewById<EditText>(R.id.UsernameBox).text.toString();
+
+                if (";" in InputPassword || ";" in InputUsername){ //checking if delegator is used in password/username and wether length is appropriate
+                    Toast.makeText(this@Login, "illegal character: ; ", Toast.LENGTH_LONG).show()
+                }
+
+                else if (InputPassword.length > 30 || InputUsername.length > 30){
+                    Toast.makeText(this@Login, "input exceeded 30 characters", Toast.LENGTH_LONG).show()
+                }
+
+                else{
+                    findViewById<ProgressBar>(R.id.loaderSpinner).visibility = View.VISIBLE;
+                    userNameGlobal = InputUsername;
+                    var dacontext = this@Login;
+                    var usefullstuff = "unset";
+
+                    CoroutineScope(IO).launch {
+                        try {
+                            usefullstuff = client("register", InputPassword, InputUsername);
+                            findViewById<TextView>(R.id.tb_debug).text = usefullstuff;
+                            usefullstuff = "alldata;${usefullstuff.split(';')[1]};MyLilChad;0;1;${InputUsername};0;0;0"
+                            active = true;
+                            val intent = Intent(dacontext, statusactivity::class.java)
+                            intent.putExtra("key1", usefullstuff)
+                            findViewById<ProgressBar>(R.id.loaderSpinner).visibility = View.INVISIBLE;
+
+                            startActivity(intent)
+                        }
+                        catch (e:Exception){
+
+                        }
+
+                    }
+                }
+
+                findViewById<EditText>(R.id.PasswordBox).setText("");
+                findViewById<EditText>(R.id.UsernameBox).setText("");
+        }
 
 
     }
 
-    private fun client(address: String, port: Int, pass:String = "", user:String = ""):String{
-        var recievedThings:String = "recieved:\n";
-
+    private suspend fun client(keyword:String ="",pass:String = "", user:String = ""):String = withContext(Dispatchers.IO){
+        var recievedThings:String = "";
         if (pass != "" && user != ""){
             try {
 
-                val connection = Socket(address, port);
+                val connection = Socket(addy, port);
 
                 val writer:OutputStream = connection.getOutputStream();
 
+                var susMsg:String = keyword + ";"+user+ ";"+pass
 
-                var e: ByteArray  = user.toByteArray()
-                var sendung:String = "";
-                for (i in e){
-                    sendung+=i.toInt().toString();
-                    sendung += " - ";
-                }
-
-                var ge: ByteArray  = pass.toByteArray()
-                var senedeneng:String = "";
-                for (d in ge){
-                    senedeneng+=d.toInt().toString();
-                    senedeneng += " - ";
-                }
-
-                findViewById<TextView>(R.id.TextBox).text ="Data Sent: \n$sendung --- ${user.toByteArray().size}\n---\n$senedeneng --- ${pass.toByteArray().size}\n"
-
-                writer.write(user.toByteArray()); //Username versenden
-                writer.write(";".toByteArray()); //delegator senden
-                writer.write(pass.toByteArray());// password senden
-
-
+                writer.write(susMsg.toByteArray()); //Username versenden
 
                 writer.flush();
 
@@ -103,15 +149,19 @@ class Login : AppCompatActivity() {
                     recievedThings += scanner.nextLine();
                     break
                 }
-                findViewById<TextView>(R.id.recievedTextbox).text = recievedThings;
+                findViewById<TextView>(R.id.tb_debug).text = recievedThings;
 
                 connection.close();
             }
             catch (e: Exception){
 
             }
+
         }
-        return recievedThings;
+        return@withContext recievedThings;
+
 
     }
+
+
 }

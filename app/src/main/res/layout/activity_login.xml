@@ -6,39 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".workoutactivity">
 
-    <TextView
-        android:id="@+id/TextBox"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toTopOf="@+id/daBtn"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="129dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="52dp"
+        android:text="Register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/daBtn"
-        android:layout_width="176dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="28dp"
+        android:id="@+id/btnLogin"
+        android:layout_width="127dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginBottom="52dp"
         android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/PasswordBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="288dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toBottomOf="@+id/TextBox"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/TextBox" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/UsernameBox"
@@ -55,25 +54,26 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.846" />
 
+    <TextView
+        android:id="@+id/tb_debug"
+        android:layout_width="411dp"
+        android:layout_height="726dp"
+        android:text="TextView"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ProgressBar
-        android:id="@+id/LoaderSpinner"
+        android:id="@+id/loaderSpinner"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:progressTint="#E91E63"
-        app:layout_constraintBottom_toBottomOf="@+id/TextBox"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/tb_debug"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PasswordBox" />
-
-    <TextView
-        android:id="@+id/recievedTextbox"
-        android:layout_width="307dp"
-        android:layout_height="126dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/TextBox"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PasswordBox" />
+        app:layout_constraintTop_toTopOf="@+id/UsernameBox" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
