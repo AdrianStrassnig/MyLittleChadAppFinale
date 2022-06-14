@@ -112,5 +112,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.676" />
+    <FrameLayout
+        android:id="@+id/fragmentContaine"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp">
 
+        <TextView
+            android:id="@+id/textviewinputtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
